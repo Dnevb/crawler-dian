@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="container">
+    <h1>Consultar RUT</h1>
+  <form method='post'>
+    {% csrf_token %}
+    <div class="form-group">
+      <label>NIT</label>
+      <input
+        type="number"
+        class="form-control"
+        name='nit'
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock content %}
