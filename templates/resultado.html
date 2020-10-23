@@ -2,6 +2,16 @@
 
 {% block content %}
 <div class="container">
-    <h1>{{resultado}}</h1>
+<h1>Datos</h1>
+<table>
+{% for i in rs %}
+{% for j, k in i.items %}
+    <tr>
+      <th>{{j}}</th>
+      <td>{{k}}</td>
+    </tr>
+{% endfor %}
+{% endfor %}
+</table>
 </div>
 {% endblock content %}

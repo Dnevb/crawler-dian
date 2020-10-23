@@ -1,7 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
-CHROMEDRIVER_PATH = '../chromedriver'
+CHROMEDRIVER_PATH = './chromedriver'
 _URL = 'https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces'
 
 chrome_options = Options()
@@ -31,6 +32,7 @@ def consultar(nit):
             nit_input.send_keys(i)
             nit_input.send_keys(Keys.ENTER)
             dv = driver.find_element_by_xpath("//span[@id='vistaConsultaEstadoRUT:formConsultaEstadoRUT:dv']")
+            print(i)
 
             try:
                 razon_social = driver.find_element_by_xpath("//span[@id='vistaConsultaEstadoRUT:formConsultaEstadoRUT:razonSocial']")
@@ -38,7 +40,7 @@ def consultar(nit):
                 estado = driver.find_element_by_xpath(
                     "//span[@id='vistaConsultaEstadoRUT:formConsultaEstadoRUT:estado']")
                 data = {
-                    "nit": NIT,
+                    "nit": i,
                     "razon_social": razon_social.text,
                     "regimen": "COMUN",
                     "fecha_actual": fecha_actual.text,
@@ -54,7 +56,7 @@ def consultar(nit):
                 estado = driver.find_element_by_xpath("//span[@id='vistaConsultaEstadoRUT:formConsultaEstadoRUT:estado']")
 
                 data = {
-                    "nit": NIT,
+                    "nit": i,
                     "primer_apellido": primer_apellido.text,
                     "segundo_apellido": segundo_apllido.text,
                     "primer_nombre": primer_nombre.text,
@@ -65,6 +67,6 @@ def consultar(nit):
                 }
                 rs.append(data)
         except:
-            return None
+            pass
         
-        return rs
+    return rs
